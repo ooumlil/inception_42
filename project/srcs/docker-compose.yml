@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  nginx:
+    build: ./requirements/nginx/
+    container_name: nginx
+    image: nginx:chiahaja
+    ports:
+      - "443:443"
+    env_file:
+      - .env
+    restart: always
+  mariadb:
+    build: ./requirements/mariadb
+    container_name: mariadb
+    image: mariadb:chiahaja
+    env_file:
+      - .env
+    restart: always
