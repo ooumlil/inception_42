@@ -8,7 +8,7 @@ COPY ./conf/script.sh /home/script.sh
 
 RUN chmod +x /home/script.sh
 
-COPY ./conf/server.conf /etc/nginx/sites-enabled/default
+COPY ./conf/server.conf /etc/nginx/conf.d
 
 EXPOSE 443
 
