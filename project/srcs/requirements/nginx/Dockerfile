@@ -1,8 +1,8 @@
 FROM debian:buster
 
 # Install dependencies
-RUN apt-get -qq update\
-	&& apt-get -qq install -y nginx openssl
+RUN apt-get -qq update >/dev/null 2>&1\
+ && apt-get -qq install -y nginx openssl >/dev/null 2>&1
 
 COPY ./conf/script.sh /script.sh
 

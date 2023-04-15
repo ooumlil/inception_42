@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# Install WP-CLI tool
+curl -s -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar >/dev/null 2>&1\
+
+# Make it executable
+chmod +x wp-cli.phar 
+
+# move it to /usr/local/bin/wp to make it a command
+mv wp-cli.phar /usr/local/bin/wp
+
 # Check if wp-config.php file exists
 if [ ! -f "/var/www/html/wp-config.php" ]; then
 
@@ -29,6 +38,8 @@ if [ ! -f "/var/www/html/wp-config.php" ]; then
 	wp user create "eclipse" "chiahaja@gmail.com"\
 					--role="author"\
 					--user_pass="1234"\
+					--first_name="tkhrbi9a"\
+					--last_name="tkhrbi9a_knya"\
 					--path="/var/www/html"\
 					--allow-root
 
