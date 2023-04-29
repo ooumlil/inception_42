@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install WP-CLI tool
-curl -s -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar >/dev/null 2>&1\
+curl -s -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar >/dev/null 2>&1
 
 # Make it executable
 chmod +x wp-cli.phar 
@@ -12,11 +12,11 @@ mv wp-cli.phar /usr/local/bin/wp
 # Check if wp-config.php file exists
 if [ ! -f "/var/www/html/wp-config.php" ]; then
 
-	# Download WordPress
+	# Downloads core WordPress files in the specified path using root user. 
 	wp core download --path="/var/www/html"\
 					--allow-root
 
-	# Create wp-config.php file
+	# Generates wp-config.php file.
 	wp config create --dbname=$DATABASE_NAME\
 					--dbuser=$MYSQL_USER\
 					--dbpass=$MYSQL_PASSWORD\
@@ -24,7 +24,7 @@ if [ ! -f "/var/www/html/wp-config.php" ]; then
 					--path="/var/www/html"\
 					--allow-root
 
-	# Install WordPress
+	# Install WordPress and Set the administrator
 	wp core install --url=$DOMAIN_NAME/\
 					--title="Home Page"\
 					--admin_user=$MYSQL_USER\
@@ -59,4 +59,4 @@ if [ ! -d run/php ]; then
 fi
 
 # Start PHP-FPM
-/usr/sbin/php-fpm7.3 -F
+exec "$@"

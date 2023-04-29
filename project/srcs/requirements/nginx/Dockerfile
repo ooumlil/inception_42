@@ -1,15 +1,23 @@
 FROM debian:buster
 
 # Install dependencies
-RUN apt-get -qq update >/dev/null 2>&1\
- && apt-get -qq install -y nginx openssl >/dev/null 2>&1
+RUN apt-get update >/dev/null 2>&1\
+ && apt-get install -y nginx openssl >/dev/null 2>&1
 
+# Copy the script to the container
 COPY ./conf/script.sh /script.sh
 
+# Grant executioin permissions
 RUN chmod +x /script.sh
 
+# Copy The nginx config file to the appropriate location
 COPY ./conf/server.conf /etc/nginx/conf.d
 
+# Expose 443 port
 EXPOSE 443
 
-CMD ["/script.sh"]
+# Execute the script
+ENTRYPOINT [ "/script.sh" ]
+
+# Start nginx Server in the foreground
+CMD [ "nginx", "-g", "daemon off;" ]

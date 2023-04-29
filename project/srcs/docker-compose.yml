@@ -14,6 +14,8 @@ services:
     restart: always
     networks:
       - nat
+    depends_on:
+      - wordpress
   mariadb:
     build: ./requirements/mariadb
     image: mariadb
