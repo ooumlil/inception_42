@@ -3,6 +3,7 @@
 # Start the MySQL service
 service mysql start
 
+# Check if the Database doesn't exist 
 if [ ! -d "/var/lib/mysql/$DATABASE_NAME" ]; then
 	# Creates the database, user, gives privileges on the created database to the user
 	# and sets a password for the root user.

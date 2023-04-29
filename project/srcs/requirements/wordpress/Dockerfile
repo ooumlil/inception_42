@@ -13,6 +13,7 @@ RUN apt-get update >/dev/null 2>&1\
 						>/dev/null 2>&1\
  && chmod +x /script.sh
 
+# Exposing port 9000
 EXPOSE 9000
 
 # Execute the script
