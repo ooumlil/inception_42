@@ -13,9 +13,6 @@ RUN chmod +x /script.sh
 # Copy The nginx config file to the appropriate location
 COPY ./conf/server.conf /etc/nginx/conf.d
 
-# Expose 443 port
-EXPOSE 443
-
 # Execute the script
 ENTRYPOINT [ "/script.sh" ]
 

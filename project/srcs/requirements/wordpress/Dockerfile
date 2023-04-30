@@ -5,16 +5,13 @@ COPY ./tools/script.sh /
 
 # Install dependencies
 RUN apt-get update >/dev/null 2>&1\
- && apt-get install -y  php\
-  						php-fpm\
-						curl\
-						mariadb-server\
-						php-mysql\
-						>/dev/null 2>&1\
+ && apt-get install -y php\
+ php-fpm\
+ curl\
+ mariadb-server\
+ php-mysql\
+ >/dev/null 2>&1\
  && chmod +x /script.sh
-
-# Exposing port 9000
-EXPOSE 9000
 
 # Execute the script
 ENTRYPOINT [ "/script.sh" ]

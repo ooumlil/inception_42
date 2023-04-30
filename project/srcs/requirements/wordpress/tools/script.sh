@@ -44,7 +44,7 @@ if [ ! -f "/var/www/html/wp-config.php" ]; then
 					--allow-root
 
 	# Install and activate the Astra theme
-	wp theme install "astra"\
+	wp theme install popularfx\
 					--activate\
 					--path="/var/www/html"\
 					--allow-root
@@ -57,6 +57,8 @@ sed -i 's/listen = \/run\/php\/php7.3-fpm.sock/listen = 9000/g' /etc/php/7.3/fpm
 if [ ! -d run/php ]; then
 	mkdir run/php
 fi
+
+echo "wordpress started successfully"
 
 # Start PHP-FPM
 exec "$@"

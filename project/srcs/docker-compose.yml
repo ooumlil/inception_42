@@ -6,7 +6,8 @@ services:
     image: nginx
     container_name: nginx
     volumes:
-      - wp_volume:/var/www/html
+      - wp_files:/var/www/html
+      - wp_db:/var/lib/mysql
     ports:
       - "443:443"
     env_file:
@@ -16,15 +17,21 @@ services:
       - nat
     depends_on:
       - wordpress
+
   mariadb:
     build: ./requirements/mariadb
     image: mariadb
     container_name: mariadb
     env_file:
       - .env
+    expose:
+      - 3306
+    volumes:
+      - wp_db:/var/lib/mysql
     restart: always
     networks:
       - nat
+
   wordpress:
     build: ./requirements/wordpress
     image: wordpress
@@ -32,7 +39,7 @@ services:
     depends_on:
       - mariadb
     volumes:
-      - wp_volume:/var/www/html
+      - wp_files:/var/www/html
     env_file:
       - .env
     expose:
@@ -45,4 +52,10 @@ networks:
   nat:
 
 volumes:
-  wp_volume:
+  wp_db:
+    # driver: local
+    # driver_opts:
+    #   type: local
+    #   o: bind
+    #   device: /my/volume/location
+  wp_files:

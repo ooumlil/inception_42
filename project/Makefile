@@ -1,7 +1,7 @@
-.PHONY: build logs up up_d up_build down prune
+.PHONY: build logs up up_d up_build down downv prune
 
 build:
-	docker-compose -f ./srcs/docker-compose.yml build
+	docker-compose -f ./srcs/docker-compose.yml build --force-recreate
 
 logs:
 	docker-compose -f ./srcs/docker-compose.yml logs
@@ -9,12 +9,13 @@ logs:
 up:
 	docker-compose -f ./srcs/docker-compose.yml up
 
-up_d:
-	docker-compose -f ./srcs/docker-compose.yml up -d
-
 up_build:
-	docker-compose -f ./srcs/docker-compose.yml up --build
+	docker-compose -f ./srcs/docker-compose.yml up --build --force-recreate
+
 down:
+	docker-compose -f ./srcs/docker-compose.yml down
+
+downv:
 	docker-compose -f ./srcs/docker-compose.yml down -v
 
 prune:
