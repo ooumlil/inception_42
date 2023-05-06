@@ -12,11 +12,11 @@ services:
       - "443:443"
     env_file:
       - .env
-    restart: always
     networks:
       - nat
     depends_on:
       - wordpress
+    restart: on-failure
 
   mariadb:
     build: ./requirements/mariadb
@@ -28,9 +28,9 @@ services:
       - 3306
     volumes:
       - wp_db:/var/lib/mysql
-    restart: always
     networks:
       - nat
+    restart: on-failure
 
   wordpress:
     build: ./requirements/wordpress
@@ -44,18 +44,33 @@ services:
       - .env
     expose:
       - 9000
-    restart: always
     networks:
       - nat
+    restart: on-failure
+
+  static_website:
+    build: ./requirements/bonus/staticwebsite
+    image: static_website
+    container_name: static_website
+    ports:
+      - "1337:80"
+    networks:
+      - nat
+    restart: on-failure
 
 networks:
   nat:
 
 volumes:
   wp_db:
-    # driver: local
-    # driver_opts:
-    #   type: local
-    #   o: bind
-    #   device: /my/volume/location
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device : ${PWD}/srcs/wp_db
   wp_files:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device : ${PWD}/srcs/wp_files

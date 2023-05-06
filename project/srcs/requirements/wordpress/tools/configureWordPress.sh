@@ -9,6 +9,8 @@ chmod +x wp-cli.phar
 # move it to /usr/local/bin/wp to make it a command
 mv wp-cli.phar /usr/local/bin/wp
 
+sleep 2
+
 # Check if wp-config.php file exists
 if [ ! -f "/var/www/html/wp-config.php" ]; then
 
@@ -38,16 +40,9 @@ if [ ! -f "/var/www/html/wp-config.php" ]; then
 	wp user create "eclipse" "chiahaja@gmail.com"\
 					--role="author"\
 					--user_pass="1234"\
-					--first_name="tkhrbi9a"\
-					--last_name="tkhrbi9a_knya"\
 					--path="/var/www/html"\
 					--allow-root
 
-	# Install and activate the Astra theme
-	wp theme install popularfx\
-					--activate\
-					--path="/var/www/html"\
-					--allow-root
 fi
 
 # Update PHP-FPM configuration to listen on port 9000
@@ -58,7 +53,7 @@ if [ ! -d run/php ]; then
 	mkdir run/php
 fi
 
-echo "wordpress started successfully"
+echo "wordpress has started"
 
 # Start PHP-FPM
 exec "$@"

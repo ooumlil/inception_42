@@ -1,7 +1,7 @@
 FROM debian:buster
 
 # Copy the script to the appropriate location
-COPY ./tools/script.sh /
+COPY ./tools/configureWordPress.sh /
 
 # Install dependencies
 RUN apt-get update >/dev/null 2>&1\
@@ -11,10 +11,10 @@ RUN apt-get update >/dev/null 2>&1\
  mariadb-server\
  php-mysql\
  >/dev/null 2>&1\
- && chmod +x /script.sh
+ && chmod +x /configureWordPress.sh
 
 # Execute the script
-ENTRYPOINT [ "/script.sh" ]
+ENTRYPOINT [ "/configureWordPress.sh" ]
 
 # After its execution run php-fpm
 CMD ["/usr/sbin/php-fpm7.3", "-F"]

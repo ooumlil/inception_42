@@ -3,24 +3,25 @@
 # Start the MySQL service
 service mysql start
 
+sleep 2
+
 # Check if the Database doesn't exist 
 if [ ! -d "/var/lib/mysql/$DATABASE_NAME" ]; then
 	# Creates the database, user, gives privileges on the created database to the user
 	# and sets a password for the root user.
-	mysql -u root -e \
-	"CREATE DATABASE IF NOT EXISTS $DATABASE_NAME;\
-	CREATE USER IF NOT EXISTS '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';\
+	mysql -e \
+	"CREATE DATABASE $DATABASE_NAME;\
+	CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';\
 	GRANT ALL PRIVILEGES ON $DATABASE_NAME.* TO '$MYSQL_USER'@'%';\
-	ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';"
+	SET PASSWORD FOR 'root'@'localhost' = PASSWORD('$MYSQL_ROOT_PASSWORD');"
 fi
-
-# Modify the MySQL configuration file to bind to all interfaces
-sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mysql/mariadb.conf.d/50-server.cnf
 
 # Stop the MySQL service
 kill $(pidof mysqld)
 
-echo "mariadb started successfully"
+sleep 2
+
+echo "mariadb has started"
 
 # Start the CMD specified in the Dockerfile
 exec "$@"
