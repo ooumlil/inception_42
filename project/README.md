@@ -1,5 +1,7 @@
 # Inception
 
+#### Goal : This project aims to broaden your knowledge of system administration by using Docker.
+
 ## What is a Docker Container?
 
 > A Docker Container is a sandboxed process on your machine that is isolated from all other processes on the host machine. That isolation leverages kernel namespaces and cgroups, features that have been in Linux for a long time. Docker has worked to make these capabilities approachable and easy to use. To summarize, a container:
@@ -30,10 +32,23 @@
 | Management           | Provides a streamlined way to manage containers using a single command-line interface | Requires more complex management tools, such as virtual machine managers or hypervisor management software |
 
 
-
-## What is a Docker Network
+## What is a Docker Network?
 
 > Docker networking is primarily used to establish communication between Docker containers and the outside world via the host machine where the Docker daemon is running.
+
+### Types of Docker Network
+
+| Type     | Description                                             |
+|----------|---------------------------------------------------------|
+| bridge   | The default network created when Docker is installed. It allows containers to communicate with each other on the same host. |
+| host     | The container shares the host’s network stack, allowing the container to use the host’s networking directly. |
+| overlay  | Used for container-to-container communication across multiple Docker hosts in a swarm cluster. |
+| macvlan  | Allows you to assign a MAC address to a container, making it appear as a physical device on the network. |
+| none     | Disables networking on the container. |
+
+
+## What is a Docker Volume?
+
 ## What is a Dockerfile?
 
 > A Dockerfile is a text document that contains all the commands a user could call on the command line to assemble an image.

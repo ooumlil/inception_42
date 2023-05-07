@@ -3,7 +3,7 @@ version: '3'
 services:
   nginx:
     build: ./requirements/nginx/
-    image: nginx
+    image: nginx:1337
     container_name: nginx
     volumes:
       - wp_files:/var/www/html
@@ -20,7 +20,7 @@ services:
 
   mariadb:
     build: ./requirements/mariadb
-    image: mariadb
+    image: mariadb:1337
     container_name: mariadb
     env_file:
       - .env
@@ -34,7 +34,7 @@ services:
 
   wordpress:
     build: ./requirements/wordpress
-    image: wordpress
+    image: wordpress:1337
     container_name: wordpress
     depends_on:
       - mariadb
@@ -50,7 +50,7 @@ services:
 
   static_website:
     build: ./requirements/bonus/staticwebsite
-    image: static_website
+    image: static_website:1337
     container_name: static_website
     ports:
       - "1337:80"
@@ -65,12 +65,10 @@ volumes:
   wp_db:
     driver: local
     driver_opts:
-      type: none
       o: bind
       device : ${PWD}/srcs/wp_db
   wp_files:
     driver: local
     driver_opts:
-      type: none
       o: bind
       device : ${PWD}/srcs/wp_files
