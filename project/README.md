@@ -4,7 +4,7 @@
 
 ## What is a Docker Container?
 
-> A Docker Container is a sandboxed process on your machine that is isolated from all other processes on the host machine. That isolation leverages kernel namespaces and cgroups, features that have been in Linux for a long time. Docker has worked to make these capabilities approachable and easy to use. To summarize, a container:
+A Docker Container is a sandboxed process on your machine that is isolated from all other processes on the host machine. That isolation leverages kernel namespaces and cgroups, features that have been in Linux for a long time. Docker has worked to make these capabilities approachable and easy to use. To summarize, a container:
 * is a runnable instance of an image. You can create, start, stop, move, or delete a container using the DockerAPI or CLI.
 
 * can be run on local machines, virtual machines or deployed to the cloud.
@@ -16,7 +16,6 @@
 ## What is a Docker Image?
 
 > A Docker image is a lightweight, stand-alone, executable package that includes everything needed to run a piece of software, including the code, a runtime, libraries, environment variables, and config files. Docker images are created from a set of instructions, called a Dockerfile, which specify the base image to use, the software and dependencies to install, and any additional configuration settings. Docker images are stored in a registry and can be pulled and run on any host that has Docker installed, making it easy to distribute and deploy applications. When a Docker image is run, it creates a Docker container, which is an instance of the image with its own isolated process and file system.
-
 
 
 ## Difference between Docker and a VM

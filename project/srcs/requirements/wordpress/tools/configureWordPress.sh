@@ -53,7 +53,7 @@ if [ ! -d run/php ]; then
 	mkdir run/php
 fi
 
-echo "wordpress has started"
+echo "wordpress has started."
 
 # Start PHP-FPM
 exec "$@"

@@ -13,7 +13,7 @@ if [ ! -d "/var/lib/mysql/$DATABASE_NAME" ]; then
 	"CREATE DATABASE $DATABASE_NAME;\
 	CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';\
 	GRANT ALL PRIVILEGES ON $DATABASE_NAME.* TO '$MYSQL_USER'@'%';\
-	SET PASSWORD FOR 'root'@'localhost' = PASSWORD('$MYSQL_ROOT_PASSWORD');"
+	SET PASSWORD FOR 'root'@'$IP' = PASSWORD('$MYSQL_ROOT_PASSWORD');"
 fi
 
 # Stop the MySQL service
@@ -21,7 +21,7 @@ kill $(pidof mysqld)
 
 sleep 2
 
-echo "mariadb has started"
+echo "mariadb has started."
 
 # Start the CMD specified in the Dockerfile
 exec "$@"

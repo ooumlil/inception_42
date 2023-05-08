@@ -8,7 +8,7 @@ openssl req -x509 -nodes -days 40\
 		-subj "/C=MA"\
 		>/dev/null 2>&1
 
-echo "nginx has started"
+echo "nginx has started."
 
 # Start the web server
 exec "$@"

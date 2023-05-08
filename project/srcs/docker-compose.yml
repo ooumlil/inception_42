@@ -13,7 +13,7 @@ services:
     env_file:
       - .env
     networks:
-      - nat
+      - internal_network
     depends_on:
       - wordpress
     restart: on-failure
@@ -29,7 +29,7 @@ services:
     volumes:
       - wp_db:/var/lib/mysql
     networks:
-      - nat
+      - internal_network
     restart: on-failure
 
   wordpress:
@@ -45,7 +45,7 @@ services:
     expose:
       - 9000
     networks:
-      - nat
+      - internal_network
     restart: on-failure
 
   static_website:
@@ -55,20 +55,32 @@ services:
     ports:
       - "1337:80"
     networks:
-      - nat
+      - internal_network
+    restart: on-failure
+
+  adminer:
+    build: ./requirements/bonus/adminer
+    image: adminer:1337
+    container_name: adminer
+    ports:
+      - "8080:8080"
+    networks:
+      - internal_network
     restart: on-failure
 
 networks:
-  nat:
+  internal_network:
 
 volumes:
   wp_db:
     driver: local
     driver_opts:
+      type: none
       o: bind
-      device : ${PWD}/srcs/wp_db
+      device : /home/ooumlil/data/wp_db
   wp_files:
     driver: local
     driver_opts:
+      type: none
       o: bind
-      device : ${PWD}/srcs/wp_files
+      device : /home/ooumlil/data/wp_files
