@@ -68,6 +68,18 @@ services:
       - internal_network
     restart: on-failure
 
+  # cadvisor:
+  #   build: ./requirements/bonus/cadvisor
+  #   image: cadvisor:1337
+  #   container_name: cadvisor
+  #   ports:
+  #     - "42:8080"
+  #   volumes:
+
+  #   networks:
+  #     - internal_network
+  #   restart: on-failure
+
 networks:
   internal_network:
 

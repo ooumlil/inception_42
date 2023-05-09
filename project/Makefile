@@ -23,6 +23,7 @@ down:
 
 down_volume:
 	docker-compose -f ./srcs/docker-compose.yml down -v
+	sudo rm -rf $(HOME)/data/wp_files/* $(HOME)/data/wp_db/*
 
 stop:
 	docker-compose -f ./srcs/docker-compose.yml stop

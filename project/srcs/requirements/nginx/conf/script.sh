@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Generate a self-signed SSL certificate
 openssl req -x509 -nodes -days 40\
 		-newkey rsa:2048\
 		-keyout $CERTS_KEY\
@@ -10,5 +9,4 @@ openssl req -x509 -nodes -days 40\
 
 echo "nginx has started."
 
-# Start the web server
 exec "$@"
